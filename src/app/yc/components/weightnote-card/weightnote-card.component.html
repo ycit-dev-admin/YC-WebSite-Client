@@ -1,0 +1,69 @@
+<mat-card class="weightnote-card">
+  <mat-card-header class="weightnote-card-header">
+    <div mat-card-avatar>
+      <img class="avatar" [src]="'/avatars/' + post.author + '.jpg'" [alt]="'/avatars/' + post.author + '.jpg'"
+        onerror="if (this.src != '/assets/default-user.png') this.src = '/assets/default-user.png';">
+    </div>
+    <mat-card-title>
+      <b>{{post.title}}</b>
+    </mat-card-title>
+    <mat-card-subtitle>{{post.updateTime | date: 'medium'}} by {{post.author}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container mat-elevation-z8">
+
+     <!--    <ng-container cdkColumnDef="username">
+            <th cdk-header-cell *cdkHeaderCellDef> User name </th>
+          </ng-container> -->
+
+    <!--     <mat-table>
+            <mat-header-row>
+              <mat-header-cell>One</mat-header-cell>
+              <mat-header-cell>Two</mat-header-cell>
+              <mat-header-cell>Three</mat-header-cell>
+            </mat-header-row>
+            <mat-row>
+              <mat-cell>{{post.title}}</mat-cell>
+              <mat-cell>{{post.updateTime}}</mat-cell>
+              <mat-cell>{{post.author}}</mat-cell>
+            </mat-row>
+          </mat-table> -->
+
+
+      <table mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+          <td mat-cell *matCellDef="let p"> {{p.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> 車牌 </th>
+          <td mat-cell *matCellDef="let p"> {{p.title}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="author">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 鐵車重 </th>
+          <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.author}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastModified">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 建立時間 </th>
+          <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.lastModified}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>
+      LIKE
+    </button>
+
+    <button mat-button>
+      SHARE
+    </button>
+  </mat-card-actions>
+</mat-card>

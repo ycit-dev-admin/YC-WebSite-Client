@@ -1,0 +1,155 @@
+<mat-tab-group>
+  <mat-tab label="未完成">
+    進貨流程
+    <mat-horizontal-stepper>
+      <mat-step label="鐵車過磅">
+        <form [formGroup]="weightMetalForm" (ngSubmit)="submit()">
+          <h4>磅單建立</h4>
+          <div>1. 請輸入車牌</div>
+          <mat-form-field>
+            <input name="carNo" matInput placeholder="車牌號碼" formControlName="carNo" required>
+          </mat-form-field>
+          <div>2. 請輸入鐵車重量 (鐵+車身重)</div>
+          <mat-form-field>
+            <input name="fullWeight" matInput placeholder="鐵車重" formControlName="fullWeight" required>
+          </mat-form-field>
+          <div>3. 請選擇磅秤</div>
+          <mat-radio-group formControlName="scaleNo">
+            <mat-radio-button [value]="1" color="primary">01_大磅</mat-radio-button>
+            <mat-radio-button [value]="2">02_小磅</mat-radio-button>
+          </mat-radio-group>
+          <button type="submit" mat-raised-button color="primary" class="submit-button"
+            [disabled]="!weightMetalForm.valid">建立</button>
+        </form>
+      </mat-step>
+      <mat-step label="怪手驗貨">
+        <h4>怪手揀貨</h4>
+        <div class="table-container mat-elevation-z8">
+          <table mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+              <td mat-cell *matCellDef="let p"> {{p.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> 車牌 </th>
+              <td mat-cell *matCellDef="let p"> {{p.title}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="author">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 鐵車重 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.author}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastModified">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 建立時間 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.lastModified}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </mat-step>
+      <mat-step label="空車過磅">
+        <h4>空車過磅</h4>
+        <div class="table-container mat-elevation-z8">
+          <table mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+              <td mat-cell *matCellDef="let p"> {{p.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> 車牌 </th>
+              <td mat-cell *matCellDef="let p"> {{p.title}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="field1">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 成分組成 </th>
+            </ng-container>
+
+            <ng-container matColumnDef="author">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 建議扣重 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.author}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="field2">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 扣重原因 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.author}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastModified">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 確認驗貨時間 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.lastModified}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="field3">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 司機名稱 </th>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="step3DisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </mat-step>
+      <mat-step label="交易付款">
+        <h4>付款項</h4>
+        <div class="table-container mat-elevation-z8">
+          <table mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+              <td mat-cell *matCellDef="let p"> {{p.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> 交貨重量 </th>
+              <td mat-cell *matCellDef="let p"> {{p.title}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="author">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 實際扣重 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.author}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f1">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 單價/公斤 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.author}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f2">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 總價 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.author}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f3">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 實付金額 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.author}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f4">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 操作功能 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column">
+                <button type="submit" mat-raised-button color="primary" class="submit-button">列印</button>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastModified">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 交易時間 </th>
+              <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.lastModified}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="step4DisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: step4DisplayedColumns;"></tr>
+          </table>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-tab>
+  <mat-tab label="已完成">
+    出貨流程
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,25 @@
+<mat-tab-group>
+  <mat-tab label="手動輸入">
+    <form [formGroup]="weightMetalForm" (ngSubmit)="submit()">
+      <h4>手動開單</h4>
+      <div>1. 請輸入車牌</div>
+      <mat-form-field>
+        <input name="carNo" matInput placeholder="車牌號碼" formControlName="carNo" required>
+      </mat-form-field>
+      <div>2. 請輸入重車重量</div>
+      <mat-form-field>
+        <input name="fullWeight" matInput placeholder="重車重" formControlName="fullWeight" required>
+      </mat-form-field>
+      <div>3. 請選擇磅秤</div>
+      <mat-radio-group formControlName="scaleNo">
+        <mat-radio-button [value]="1" color="primary">01_大磅</mat-radio-button>
+        <mat-radio-button [value]="2">02_小磅</mat-radio-button>
+      </mat-radio-group>
+      <div><button type="submit" mat-raised-button color="primary" class="submit-button"
+          [disabled]="!weightMetalForm.valid">建立</button></div>
+    </form>
+  </mat-tab>
+  <mat-tab label="車牌辨識">
+    <h4>辨識開單</h4>
+  </mat-tab>
+</mat-tab-group>

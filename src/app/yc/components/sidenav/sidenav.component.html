@@ -1,0 +1,32 @@
+<mat-drawer-container class="app-sidenav-container" autosize>
+
+  <mat-drawer #drawer class="app-sidenav mat-elevation-z10" [mode]="isScreenSmall() ? 'over' : 'side'" [opened]="!isScreenSmall()">
+
+    <mat-toolbar color="primary">
+      功能表選單
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item role="listitem" routerLink="/yc/post-list">Post List</mat-list-item>
+    </mat-nav-list>
+    <mat-nav-list>
+      <mat-list-item role="listitem" routerLink="/yc/post-table">Post Table</mat-list-item>
+    </mat-nav-list>
+    
+    <mat-nav-list>
+      <mat-list-item role="listitem" routerLink="/yc/pos-produce-process">進出貨流程</mat-list-item>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <mat-list-item role="listitem" routerLink="/yc/pos-purchase">進貨流程V2</mat-list-item>
+    </mat-nav-list>
+
+  </mat-drawer>
+
+  <div class="app-sidenav-content">
+    <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>    
+  </div>
+
+</mat-drawer-container>
