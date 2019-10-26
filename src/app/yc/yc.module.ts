@@ -25,6 +25,7 @@ import { WeightnoteCardComponent } from './components/weightnote-card/weightnote
 import { WeightNoteinfoDialogComponent } from './components/weightnoteinfo-dialog/weightnoteinfo-dialog.component';
 import { CreateWeightnoteComponent } from './components/create-weightnote/create-weightnote.component';
 import { WeightNoteService } from './services/weightnote.service';
+import { ProcurementProcessComponent } from './components/procurement-process/procurement-process.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,18 @@ import { WeightNoteService } from './services/weightnote.service';
   ],
   declarations: [
     YcAppComponent,
-    SidenavComponent, ToolbarComponent, PostListComponent, PostCardComponent, WritePostComponent, PostTableComponent, PosProduceProcessComponent, PosPurchaseComponent, WeightnoteCardComponent, WeightNoteinfoDialogComponent, CreateWeightnoteComponent
+    SidenavComponent,
+    ToolbarComponent,
+    PostListComponent,
+    PostCardComponent,
+    WritePostComponent,
+    PostTableComponent,
+    PosProduceProcessComponent,
+    PosPurchaseComponent,
+    WeightnoteCardComponent,
+    WeightNoteinfoDialogComponent,
+    CreateWeightnoteComponent,
+    ProcurementProcessComponent
   ],
   providers: [
     PostService,
