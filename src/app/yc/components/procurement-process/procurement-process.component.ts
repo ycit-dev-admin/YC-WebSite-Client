@@ -29,7 +29,7 @@ export class ProcurementProcessComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog,
-              public openIdConnectService: OpenIdConnectService) {
+    public openIdConnectService: OpenIdConnectService) {
   }
 
   ngOnInit() {
@@ -39,7 +39,14 @@ export class ProcurementProcessComponent implements OnInit {
 
 
   createWeightNoteByDialog() {
-    this.dialog.open(CreateWeightnoteComponent);
+    const dialogRef = this.dialog.open(CreateWeightnoteComponent, {
+      width: '700px',
+      height: '700px'
+    });
+
+
+
+
   }
 
 }

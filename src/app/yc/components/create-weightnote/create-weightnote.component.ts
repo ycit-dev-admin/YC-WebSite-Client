@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialogRef } from '@angular/material';
 import { WeightNoteService } from '../../services/weightnote.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class CreateWeightnoteComponent implements OnInit {
   weightMetalForm: FormGroup;
 
   constructor(
+    public dialogRef: MatDialogRef<CreateWeightnoteComponent>,
     private weightnoteService: WeightNoteService,
     private router: Router,
     private snackBar: MatSnackBar) {
@@ -40,6 +41,22 @@ export class CreateWeightnoteComponent implements OnInit {
           // ValidationErrorHandler.handleFormValidationErrors(this.postForm, validationResult);
         });
     }
+  }
+
+  testClick() {
+    this.dialogRef.close();
+    if (this.weightMetalForm.dirty && this.weightMetalForm.valid) {
+      this.weightnoteService.addWeightnote(this.weightMetalForm.value).subscribe(
+        post => {
+          // this.router.navigate(['/yc/posts/', post.id]);
+          this.router.navigate(['/yc/procurement-process']);  // 導頁用
+        },
+        validationResult => {
+          this.snackBar.open('There are validation errors!', 'Close', { duration: 3000 });
+          // ValidationErrorHandler.handleFormValidationErrors(this.postForm, validationResult);
+        });
+    }
+    console.log('test click qq');
   }
 
 }
