@@ -13,8 +13,6 @@ export class WeightNoteinfoDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  showWeightNoteDialog() {
-    this.dialog.open(WeightNoteinfoDialogComponent);
-  }
+
 
 }

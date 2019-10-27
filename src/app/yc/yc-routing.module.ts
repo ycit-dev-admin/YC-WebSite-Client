@@ -8,6 +8,7 @@ import { PostTableComponent } from './components/post-table/post-table.component
 import { PosProduceProcessComponent } from './components/pos-produce-process/pos-produce-process.component';
 import { PosPurchaseComponent } from './components/pos-purchase/pos-purchase.component';
 import { CreateWeightnoteComponent } from './components/create-weightnote/create-weightnote.component';
+import { ProcurementProcessComponent } from './components/procurement-process/procurement-process.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'post-table', component: PostTableComponent },
       { path: 'pos-produce-process', component: PosProduceProcessComponent },
       { path: 'pos-purchase', component: PosPurchaseComponent },
+      { path: 'procurement-process', component: ProcurementProcessComponent },
       {
         path: 'write-post', component: WritePostComponent,
         canActivate: [RequireAuthenticatedUserRouteGuard]

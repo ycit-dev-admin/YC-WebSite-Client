@@ -26,6 +26,7 @@ import { WeightNoteinfoDialogComponent } from './components/weightnoteinfo-dialo
 import { CreateWeightnoteComponent } from './components/create-weightnote/create-weightnote.component';
 import { WeightNoteService } from './services/weightnote.service';
 import { ProcurementProcessComponent } from './components/procurement-process/procurement-process.component';
+import { ProcurementCheckModule } from './modules/procurement-check/procurement-check.module';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { ProcurementProcessComponent } from './components/procurement-process/pr
     FormsModule,
     ReactiveFormsModule,
     EditorModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    ProcurementCheckModule
   ],
   declarations: [
     YcAppComponent,

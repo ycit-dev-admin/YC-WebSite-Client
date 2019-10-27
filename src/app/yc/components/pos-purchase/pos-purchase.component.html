@@ -52,7 +52,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="step1DisplayedColumns"></tr>
-            <tr mat-row (click)="test()" *matRowDef="let row; columns: step1DisplayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: step1DisplayedColumns;"></tr>
           </table>
         </div>
         <button mat-fab color="warn" class="add-fab" [routerLink]="'/yc/create-weightnote'"

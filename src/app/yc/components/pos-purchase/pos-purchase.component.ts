@@ -19,14 +19,14 @@ export class PosPurchaseComponent implements OnInit {
 
   pageMeta: PageMeta;
   weightNoteParameter = new WeightNoteParameters({ orderBy: 'id desc', pageSize: 10, pageIndex: 0 });
-  displayedColumns: string[] = ['id', 'title', 'author', 'lastModified'];
+  // displayedColumns: string[] = ['id', 'title', 'author', 'lastModified'];
   step1DisplayedColumns: string[] = ['carNo', 'fullWeight', 'ingredient', 'defectiveWeight', 'defectiveReason', 'excavatorOpEmpNo', 'createTime', 'operateAction'];
   step3DisplayedColumns: string[] = ['id', 'title', 'field1', 'author', 'field2', 'field3', 'lastModified', 'field4'];
   step4DisplayedColumns: string[] = ['id', 'title', 'author', 'f1', 'f2', 'f3', 'f4', 'lastModified'];
   dataSource: WeightNote[];
 
 
-  
+
 
   constructor(public dialog: MatDialog, private weightNoteService: WeightNoteService,
     private openIdConnectService: OpenIdConnectService) {
@@ -44,7 +44,7 @@ export class PosPurchaseComponent implements OnInit {
     });
   }
 
-  
+
 
   sortData(sort: Sort) {
     this.weightNoteParameter.orderBy = null;

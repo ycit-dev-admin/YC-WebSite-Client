@@ -21,7 +21,6 @@ export class PostListComponent implements OnInit {
   constructor(private postService: PostService,
     private openIdConnectService: OpenIdConnectService) { }
 
-    
   ngOnInit() {
     this.posts = [];
     this.getPosts();
@@ -31,7 +30,7 @@ export class PostListComponent implements OnInit {
     this.postService.getPagedPosts(this.postParameter).subscribe(resp => {
       this.pageMeta = JSON.parse(resp.headers.get('X-Pagination')) as PageMeta;
       const result = { ...resp.body } as ResultWithLinks<Post>;
-      //this.posts = result.value;  
+      //this.posts = result.value;
       this.posts = this.posts.concat(result.value);  //配合無限滾動功能，要往列表加值
     });
   }

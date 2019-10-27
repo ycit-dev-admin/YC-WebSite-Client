@@ -11,13 +11,16 @@
     <mat-nav-list>
       <mat-list-item role="listitem" routerLink="/yc/post-table">Post Table</mat-list-item>
     </mat-nav-list>
-    
+
     <mat-nav-list>
       <mat-list-item role="listitem" routerLink="/yc/pos-produce-process">進出貨流程</mat-list-item>
     </mat-nav-list>
 
     <mat-nav-list>
       <mat-list-item role="listitem" routerLink="/yc/pos-purchase">進貨流程V2</mat-list-item>
+    </mat-nav-list>
+    <mat-nav-list>
+      <mat-list-item role="listitem" routerLink="/yc/procurement-process">進貨流程V3</mat-list-item>
     </mat-nav-list>
 
   </mat-drawer>
@@ -26,7 +29,7 @@
     <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
     <div class="wrapper">
       <router-outlet></router-outlet>
-    </div>    
+    </div>
   </div>
 
 </mat-drawer-container>

@@ -46,7 +46,7 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="step1DisplayedColumns"></tr>
-    <tr mat-row (click)="test()" *matRowDef="let row; columns: step1DisplayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
   </table>
 </div>

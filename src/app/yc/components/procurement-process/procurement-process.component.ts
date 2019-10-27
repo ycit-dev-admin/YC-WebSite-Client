@@ -7,6 +7,7 @@ import { MatDialog, Sort } from '@angular/material';
 import { WeightNoteinfoDialogComponent } from '../weightnoteinfo-dialog/weightnoteinfo-dialog.component';
 import { WeightNoteParameters } from '../../models/weightNote-parameters';
 import { OpenIdConnectService } from 'src/app/shared/oidc/open-id-connect.service';
+import { CreateWeightnoteComponent } from '../create-weightnote/create-weightnote.component';
 
 @Component({
   selector: 'app-procurement-process',
@@ -27,37 +28,18 @@ export class ProcurementProcessComponent implements OnInit {
 
 
 
-  constructor(public dialog: MatDialog, private weightNoteService: WeightNoteService,
-    private openIdConnectService: OpenIdConnectService) {
+  constructor(public dialog: MatDialog,
+              public openIdConnectService: OpenIdConnectService) {
   }
 
   ngOnInit() {
-    this.load();
-  }
 
-  load() {
-    this.weightNoteService.getPagedWeightNotes(this.weightNoteParameter).subscribe(resp => {
-      this.pageMeta = JSON.parse(resp.headers.get('X-Pagination')) as PageMeta;
-      const pagedResult = { ...resp.body } as ResultWithLinks<WeightNote>;
-      this.dataSource = pagedResult.value;
-    });
   }
 
 
 
-  sortData(sort: Sort) {
-    this.weightNoteParameter.orderBy = null;
-    if (sort.direction) {
-      this.weightNoteParameter.orderBy = sort.active;
-      if (sort.direction === 'desc') {
-        this.weightNoteParameter.orderBy += ' desc';
-      }
-    }
-    this.load();
-  }
-
-  showWeightNoteDialog() {
-    this.dialog.open(WeightNoteinfoDialogComponent);
+  createWeightNoteByDialog() {
+    this.dialog.open(CreateWeightnoteComponent);
   }
 
 }

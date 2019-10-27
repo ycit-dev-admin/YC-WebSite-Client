@@ -6,7 +6,11 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 @NgModule({
   declarations: [ProcurementCheckListComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
+  ],
+  exports:[
+    ProcurementCheckListComponent
   ]
 })
 export class ProcurementCheckModule { }
