@@ -6,6 +6,8 @@ import { WeightNoteParameters } from 'src/app/yc/models/weightNote-parameters';
 import { WeightNoteinfoDialogComponent } from 'src/app/yc/components/weightnoteinfo-dialog/weightnoteinfo-dialog.component';
 import { PageMeta } from 'src/app/shared/models/page-meta';
 import { ResultWithLinks } from 'src/app/shared/models/result-with-links';
+import { CreateWeightnoteComponent } from 'src/app/yc/components/create-weightnote/create-weightnote.component';
+import { OpenIdConnectService } from 'src/app/shared/oidc/open-id-connect.service';
 
 
 @Component({
@@ -17,11 +19,11 @@ export class ProcurementCheckListComponent implements OnInit {
   pageMeta: PageMeta;
   dataSource: WeightNote[];
   weightNoteParameter = new WeightNoteParameters({ orderBy: 'id desc', pageSize: 10, pageIndex: 0 });
-  public dialog: MatDialog;
+
   // tslint:disable-next-line: max-line-length
   displayColumns: string[] = ['carNo', 'fullWeight', 'ingredient', 'defectiveWeight', 'defectiveReason', 'excavatorOpEmpNo', 'createTime', 'operateAction'];
 
-  constructor(private weightNoteService: WeightNoteService) { }
+  constructor(public dialog: MatDialog, private weightNoteService: WeightNoteService, public openIdConnectService: OpenIdConnectService) { }
 
   ngOnInit() {
     console.log('ProcurementCheckListComponent_ngOninit');
@@ -54,5 +56,19 @@ export class ProcurementCheckListComponent implements OnInit {
     this.dialog.open(WeightNoteinfoDialogComponent);
   }
 
+  createWeightNoteByDialog() {
+    const dialogRef = this.dialog.open(CreateWeightnoteComponent, {
+      width: '700px',
+      height: '700px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.load();
+    });
+
+
+
+  }
 
 }

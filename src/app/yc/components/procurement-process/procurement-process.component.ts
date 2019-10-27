@@ -38,18 +38,6 @@ export class ProcurementProcessComponent implements OnInit {
 
 
 
-  createWeightNoteByDialog() {
-    const dialogRef = this.dialog.open(CreateWeightnoteComponent, {
-      width: '700px',
-      height: '700px'
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-
-
-
-  }
 
 }

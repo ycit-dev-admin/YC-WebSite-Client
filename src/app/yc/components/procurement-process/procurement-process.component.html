@@ -4,9 +4,7 @@
       <mat-step label="怪手驗貨">
         <h4>待驗貨</h4>
         <app-procurement-check-list></app-procurement-check-list>
-        <button mat-fab color="warn" class="add-fab" (click)="createWeightNoteByDialog()" *ngIf='openIdConnectService.userAvailable'>
-          <mat-icon aria-label="Add Weightnote" svgIcon="baseline-add"></mat-icon>
-        </button>
+
       </mat-step>
       <mat-step label="空車過磅">
         <h4>空車過磅</h4>
