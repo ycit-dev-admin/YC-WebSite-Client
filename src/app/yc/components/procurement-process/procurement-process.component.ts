@@ -29,11 +29,11 @@ export class ProcurementProcessComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog,
-    public openIdConnectService: OpenIdConnectService) {
+              public openIdConnectService: OpenIdConnectService) {
   }
 
   ngOnInit() {
-
+    console.log('ProcurementProcessComponent_ngOninit');
   }
 
 
@@ -44,6 +44,9 @@ export class ProcurementProcessComponent implements OnInit {
       height: '700px'
     });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
 
 
 

@@ -26,6 +26,7 @@ export class CreateWeightnoteComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('createWeightNote_ngOninit');
     this.dialogTitleName = '磅單開立';
   }
 
@@ -44,7 +45,6 @@ export class CreateWeightnoteComponent implements OnInit {
   }
 
   testClick() {
-    this.dialogRef.close();
     if (this.weightMetalForm.dirty && this.weightMetalForm.valid) {
       this.weightnoteService.addWeightnote(this.weightMetalForm.value).subscribe(
         post => {
@@ -55,6 +55,7 @@ export class CreateWeightnoteComponent implements OnInit {
           this.snackBar.open('There are validation errors!', 'Close', { duration: 3000 });
           // ValidationErrorHandler.handleFormValidationErrors(this.postForm, validationResult);
         });
+      this.dialogRef.close();
     }
     console.log('test click qq');
   }

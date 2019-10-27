@@ -24,6 +24,7 @@ export class ProcurementCheckListComponent implements OnInit {
   constructor(private weightNoteService: WeightNoteService) { }
 
   ngOnInit() {
+    console.log('ProcurementCheckListComponent_ngOninit');
     this.load();
   }
 
