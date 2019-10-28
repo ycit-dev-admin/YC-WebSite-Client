@@ -30,32 +30,20 @@ export class CreateWeightnoteComponent implements OnInit {
     this.dialogTitleName = '磅單開立';
   }
 
-  submit() {
-    if (this.weightMetalForm.dirty && this.weightMetalForm.valid) {
-      this.weightnoteService.addWeightnote(this.weightMetalForm.value).subscribe(
-        post => {
-          // this.router.navigate(['/yc/posts/', post.id]);
-          this.router.navigate(['/yc/procurement-process']);  // 導頁用
-        },
-        validationResult => {
-          this.snackBar.open('There are validation errors!', 'Close', { duration: 3000 });
-          // ValidationErrorHandler.handleFormValidationErrors(this.postForm, validationResult);
-        });
-    }
-  }
+
 
   testClick() {
     if (this.weightMetalForm.dirty && this.weightMetalForm.valid) {
       this.weightnoteService.addWeightnote(this.weightMetalForm.value).subscribe(
         post => {
           // this.router.navigate(['/yc/posts/', post.id]);
-          this.router.navigate(['/yc/procurement-process']);  // 導頁用
+          // this.router.navigate(['/yc/procurement-process']);  // 導頁用
+          this.dialogRef.close();
         },
         validationResult => {
           this.snackBar.open('There are validation errors!', 'Close', { duration: 3000 });
           // ValidationErrorHandler.handleFormValidationErrors(this.postForm, validationResult);
         });
-      this.dialogRef.close();
     }
     console.log('test click qq');
   }

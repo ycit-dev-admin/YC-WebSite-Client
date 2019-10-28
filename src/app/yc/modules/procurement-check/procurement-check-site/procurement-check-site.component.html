@@ -1,0 +1,6 @@
+<app-procurement-check-list [dataSource]="dataSource"></app-procurement-check-list>
+
+<button mat-fab color="warn" class="add-fab" (click)="createWeightNoteByDialog()"
+  *ngIf='openIdConnectService.userAvailable'>
+  <mat-icon aria-label="Add Weightnote" svgIcon="baseline-add"></mat-icon>
+</button>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { WeightNote } from 'src/app/yc/models/weightnote';
 import { WeightNoteService } from 'src/app/yc/services/weightnote.service';
 import { Sort, MatDialog } from '@angular/material';
@@ -16,8 +16,13 @@ import { OpenIdConnectService } from 'src/app/shared/oidc/open-id-connect.servic
   styleUrls: ['./procurement-check-list.component.scss']
 })
 export class ProcurementCheckListComponent implements OnInit {
-  pageMeta: PageMeta;
+
+  @Input()
   dataSource: WeightNote[];
+
+
+  pageMeta: PageMeta;
+  // dataSource: WeightNote[];
   weightNoteParameter = new WeightNoteParameters({ orderBy: 'id desc', pageSize: 10, pageIndex: 0 });
 
   // tslint:disable-next-line: max-line-length
@@ -27,7 +32,7 @@ export class ProcurementCheckListComponent implements OnInit {
 
   ngOnInit() {
     console.log('ProcurementCheckListComponent_ngOninit');
-    this.load();
+   // this.load();
   }
 
 
@@ -56,19 +61,6 @@ export class ProcurementCheckListComponent implements OnInit {
     this.dialog.open(WeightNoteinfoDialogComponent);
   }
 
-  createWeightNoteByDialog() {
-    const dialogRef = this.dialog.open(CreateWeightnoteComponent, {
-      width: '700px',
-      height: '700px'
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.load();
-    });
-
-
-
-  }
 
 }
