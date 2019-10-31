@@ -11,7 +11,6 @@ import { ProcurementCheckSiteComponent } from './procurement-check-site/procurem
     MaterialModule
   ],
   exports: [
-    ProcurementCheckListComponent,
     ProcurementCheckSiteComponent
   ]
 })

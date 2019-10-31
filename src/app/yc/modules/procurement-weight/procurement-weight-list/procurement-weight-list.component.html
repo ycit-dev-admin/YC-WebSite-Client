@@ -1,0 +1,52 @@
+<div class="table-container mat-elevation-z8">
+  <table mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 車牌 </th>
+      <td mat-cell *matCellDef="let p"> {{p.carNo}}</td>
+    </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 品項比例 </th>
+      <td mat-cell *matCellDef="let p"> {{p.ingredient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="field1">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 建議扣重 </th>
+      <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.defectiveWeight}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="author">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 扣重原因 </th>
+      <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.defectiveReason}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="field2">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 司機名稱 </th>
+      <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.excavatorOpEmpNo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="field3">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 重車重 </th>
+      <td mat-cell *matCellDef="let p" class="hidden-xs-column"> {{p.fullWeight}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastModified">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 空車重 </th>
+      <td mat-cell *matCellDef="let p" class="hidden-xs-column"> <button mat-button color="primary">磅空車</button>
+      </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="field4">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 功能操作 </th>
+      <td mat-cell *matCellDef="let p" class="hidden-xs-column">
+        <button type="submit" mat-raised-button color="primary" class="submit-button">過站</button>
+        <button type="submit" mat-raised-button color="color" class="submit-button">退站</button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+  </table>
+</div>

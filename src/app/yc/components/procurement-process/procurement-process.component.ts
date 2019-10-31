@@ -19,9 +19,9 @@ export class ProcurementProcessComponent implements OnInit {
   pageMeta: PageMeta;
   weightNoteParameter = new WeightNoteParameters({ orderBy: 'id desc', pageSize: 10, pageIndex: 0 });
   displayedColumns: string[] = ['id', 'title', 'author', 'lastModified'];
-  // tslint:disable-next-line: max-line-length
-  step1DisplayedColumns: string[] = ['carNo', 'fullWeight', 'ingredient', 'defectiveWeight', 'defectiveReason', 'excavatorOpEmpNo', 'createTime', 'operateAction'];
-  step3DisplayedColumns: string[] = ['id', 'title', 'field1', 'author', 'field2', 'field3', 'lastModified', 'field4'];
+
+
+
   step4DisplayedColumns: string[] = ['id', 'title', 'author', 'f1', 'f2', 'f3', 'f4', 'lastModified'];
   dataSource: WeightNote[];
 

@@ -36,6 +36,7 @@ export class ProcurementCheckListComponent implements OnInit {
   }
 
 
+  // 要拿掉
   load() {
     this.weightNoteService.getPagedWeightNotes(this.weightNoteParameter).subscribe(resp => {
       this.pageMeta = JSON.parse(resp.headers.get('X-Pagination')) as PageMeta;
@@ -45,7 +46,7 @@ export class ProcurementCheckListComponent implements OnInit {
   }
 
 
-
+// 要改成呼叫父元件(事件繫結+Ouput) ProcurementCheckSite的sortData
   sortData(sort: Sort) {
     this.weightNoteParameter.orderBy = null;
     if (sort.direction) {
