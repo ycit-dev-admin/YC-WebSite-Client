@@ -6,7 +6,7 @@ export const environment = {
 
   production: false,
   apiUrlBase: '/api',
-  //apiUrlBase: "https://localhost:6001/api"
+  // apiUrlBase: "https://localhost:6001/api"
   openIdConnectSettings: {
     authority: 'https://localhost:5001/',
     client_id: 'yc-client',
@@ -15,7 +15,7 @@ export const environment = {
     response_type: 'id_token token',
     post_logout_redirect_uri: 'http://localhost:4200/',
     silent_redirect_uri: 'http://localhost:4200/redirect-silentrenew',
-    automaticSilentRenew: true,  //先註解掉避免一直重新連線
+    automaticSilentRenew: true,  // 先註解掉避免一直重新連線
   }
 };
 

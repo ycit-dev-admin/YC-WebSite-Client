@@ -13,7 +13,7 @@ import { AuthorizationHeaderInterceptor } from '../shared/oidc/authorization-hea
 import { PostCardComponent } from './components/post-card/post-card.component';
 import { WritePostComponent } from './components/write-post/write-post.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditorModule } from '@tinymce/tinymce-angular'
+import { EditorModule } from '@tinymce/tinymce-angular';
 import { TinymceService } from './services/tinymce.service';
 import { EnsureAcceptHeaderInterceptor } from '../shared/ensure-accept-header.interceptor';
 import { HandleHttpErrorInterceptor } from '../shared/handle-http-error-interceptor';

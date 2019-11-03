@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, Sort } from '@angular/material';
 import { WeightNoteService } from 'src/app/yc/services/weightnote.service';
 import { OpenIdConnectService } from 'src/app/shared/oidc/open-id-connect.service';
 import { WeightNoteParameters } from 'src/app/yc/models/weightNote-parameters';
@@ -30,6 +30,18 @@ export class ProcurementPaySiteComponent implements OnInit {
       const pagedResult = { ...resp.body } as ResultWithLinks<WeightNote>;
       this.dataSource = pagedResult.value;
     });
+  }
+
+  sortData(sort: Sort) {
+    this.weightNoteParameter.orderBy = null;
+    if (sort.direction) {
+      this.weightNoteParameter.orderBy = sort.active;
+      if (sort.direction === 'desc') {
+        this.weightNoteParameter.orderBy += ' desc';
+      }
+    }
+    console.log('paySitePrint');
+    this.load();
   }
 
 }

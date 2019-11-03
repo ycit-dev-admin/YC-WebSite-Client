@@ -11,7 +11,7 @@ export class RedirectSilentRenewComponent implements OnInit {
   constructor(private openIdConnectService: OpenIdConnectService) { }
 
   ngOnInit() {
-    this.openIdConnectService.handleSilentCallback();  //直接呼叫opid servcie的重整方法
+    this.openIdConnectService.handleSilentCallback();  // 直接呼叫opid servcie的重整方法
   }
 
 }
