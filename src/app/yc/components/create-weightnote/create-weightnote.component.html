@@ -3,7 +3,7 @@
 <mat-dialog-content class="post-form">
   <mat-tab-group>
     <mat-tab label="手動輸入">
-      <form [formGroup]="weightMetalForm" (ngSubmit)="submit()">
+      <form [formGroup]="weightMetalForm">
         <h4>手動開單</h4>
         <div>1. 請輸入車牌</div>
         <mat-form-field>
@@ -19,7 +19,6 @@
           <mat-radio-button [value]="2">02_小磅</mat-radio-button>
         </mat-radio-group>
       </form>
-
     </mat-tab>
     <mat-tab label="車牌辨識">
       <h4>辨識開單</h4>
@@ -27,7 +26,7 @@
   </mat-tab-group>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button type="submit" (click)="testClick()" mat-raised-button color="primary" class="submit-button"
+  <button (click)="testClick()" mat-raised-button color="primary" class="submit-button"
     [disabled]="!weightMetalForm.valid">建立</button>
   <button mat-button mat-dialog-close color="warn">取消</button>
 </mat-dialog-actions>

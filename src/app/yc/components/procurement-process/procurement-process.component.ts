@@ -8,9 +8,9 @@ import { OpenIdConnectService } from 'src/app/shared/oidc/open-id-connect.servic
 })
 export class ProcurementProcessComponent implements OnInit {
 
-  //pageMeta: PageMeta;
-  //weightNoteParameter = new WeightNoteParameters({ orderBy: 'id desc', pageSize: 10, pageIndex: 0 });
-  //dataSource: WeightNote[];
+  // pageMeta: PageMeta;
+  // weightNoteParameter = new WeightNoteParameters({ orderBy: 'id desc', pageSize: 10, pageIndex: 0 });
+  // dataSource: WeightNote[];
 
 
 
