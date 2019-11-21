@@ -29,7 +29,7 @@ export class WeightNoteService extends BaseService {
     weightnote: WeightnoteAdd,
     weightNoteType = "1",
     inputType = "1",
-    facNo = "2") {
+    facNo = '2') {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/vnd.yuan-chun.weightnote.create+json',

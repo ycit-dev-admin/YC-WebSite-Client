@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatDialogRef } from '@angular/material';
 import { WeightNoteService } from '../../services/weightnote.service';
 import { strictEqual } from 'assert';
 import { computeStyle } from '@angular/animations/browser/src/util';
 import { validEvents } from '@tinymce/tinymce-angular/editor/Events';
+import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-create-weightnote',
@@ -13,57 +14,63 @@ import { validEvents } from '@tinymce/tinymce-angular/editor/Events';
   styleUrls: ['./create-weightnote.component.scss']
 })
 export class CreateWeightnoteComponent implements OnInit {
-
-  constructor(
-    public dialogRef: MatDialogRef<CreateWeightnoteComponent>,
-    private weightnoteService: WeightNoteService,
-    private router: Router,
-    private snackBar: MatSnackBar) {
-    this.createWeightnoteForm = new FormGroup({
-      carNo: new FormControl('', Validators.required),
-      carNoOne: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-        Validators.pattern('[a-zA-Z0-9]{0,4}')
-      ])),
-      fullWeight: new FormControl('', Validators.required),
-      scaleNo: new FormControl(1),
-    });
-  }
   dialogTitleName: string;
   createWeightnoteForm: FormGroup;
   testErrorMsg: string;
   showBollean: boolean;
+  // defaultCheck = [Validators.required, Validators.maxLength(5), Validators.pattern('[0-9]{0,5}')];
+  // otherCheck = [Validators.required, Validators.maxLength(4), Validators.pattern('[0-9]{0,5}')];
 
 
   // tslint:disable-next-line: variable-name
   weightnote_validation_messages = {
     carNoOne: [
       { type: 'required', message: '此為必填欄位' },
-      { type: 'minlength', message: '長度不能低於3碼' },
+      { type: 'minlength', message: '長度不能低於2碼' },
       { type: 'pattern', message: '只允許英數' }
     ],
-    email: [
-      { type: 'required', message: 'Email is required' },
-      { type: 'pattern', message: 'Enter a valid email' }
-    ]/* ,
-    confirm_password: [
-      { type: 'required', message: 'Confirm password is required' },
-      { type: 'areEqual', message: 'Password mismatch' }
+    carNoTwo: [
+      { type: 'required', message: '此為必填欄位' },
+      { type: 'minlength', message: '長度不能低於2碼' },
+      { type: 'pattern', message: '只允許英數' }
     ],
-    password: [
-      { type: 'required', message: 'Password is required' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
-    ],
-    terms: [
-      { type: 'pattern', message: 'You must accept terms and conditions' }
-    ] */
+    fullWeight: [
+      { type: 'required', message: '此為必填欄位' },
+      { type: 'maxlength', message: '輸入長度不符所選磅秤' },
+      { type: 'pattern', message: '只允許數字' }
+    ]
   };
+
+  constructor(
+    public dialogRef: MatDialogRef<CreateWeightnoteComponent>,
+    private weightnoteService: WeightNoteService,
+    private router: Router,
+    private snackBar: MatSnackBar) {
+    /* this.createWeightnoteForm = new FormGroup({
+      carNo: new FormControl('', Validators.required),
+      carNoOne: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern('[a-zA-Z0-9]{0,4}')
+      ])),
+      carNoTwo: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern('[a-zA-Z0-9]{0,4}')
+      ])),
+      fullWeight: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      scaleNo: new FormControl(1)
+    }); */
+  }
+
 
   ngOnInit() {
     console.log('createWeightNote_ngOninit');
     this.dialogTitleName = '磅單開立';
+    this.iniForm();
+    this.setfullWeightValidators();
   }
 
   wowErrorMessage() {
@@ -121,6 +128,30 @@ export class CreateWeightnoteComponent implements OnInit {
      } else {
        this.errorMsg = '只允許輸入英文或數字2';
      } */
+  }
+
+  iniForm() {
+    this.createWeightnoteForm = new FormBuilder().group({
+      carNoOne: [null, [Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z0-9]{0,4}')]],
+      carNoTwo: [null, [Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z0-9]{0,4}')]],
+      scaleNo: [1, [Validators.required]],
+      fullWeight: [null]
+    });
+  }
+
+  setfullWeightValidators() {
+    const fullWeightControl = this.createWeightnoteForm.get('fullWeight');
+    const defaultCheck2 = [Validators.required, Validators.pattern('[0-9]{0,5}')];
+
+    defaultCheck2.push(Validators.maxLength(5));
+    this.createWeightnoteForm.get('scaleNo').valueChanges
+      .subscribe(scaleNoValue => {
+        if (scaleNoValue === 2) {
+          defaultCheck2.push(Validators.maxLength(4));
+        }
+      });
+    fullWeightControl.setValidators(defaultCheck2);
+    fullWeightControl.updateValueAndValidity();
   }
 
   testClick() {
