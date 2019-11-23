@@ -7,6 +7,7 @@ import { strictEqual } from 'assert';
 import { computeStyle } from '@angular/animations/browser/src/util';
 import { validEvents } from '@tinymce/tinymce-angular/editor/Events';
 import { DISABLED } from '@angular/forms/src/model';
+import { formGroupNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 @Component({
   selector: 'app-create-weightnote',
@@ -140,18 +141,27 @@ export class CreateWeightnoteComponent implements OnInit {
   }
 
   setfullWeightValidators() {
+    const defaultValidators = [Validators.required, Validators.pattern('[0-9]{0,5}')];
+    // default
     const fullWeightControl = this.createWeightnoteForm.get('fullWeight');
-    const defaultCheck2 = [Validators.required, Validators.pattern('[0-9]{0,5}')];
+    fullWeightControl.setValidators(defaultValidators.concat([Validators.maxLength(5)]));
+    fullWeightControl.updateValueAndValidity();
 
-    defaultCheck2.push(Validators.maxLength(5));
+    // 數值變動才會進入
     this.createWeightnoteForm.get('scaleNo').valueChanges
       .subscribe(scaleNoValue => {
-        if (scaleNoValue === 2) {
-          defaultCheck2.push(Validators.maxLength(4));
+        if (scaleNoValue === 1) {
+          fullWeightControl.setValidators(defaultValidators.concat([Validators.maxLength(5)]));
+          console.log('changed_1');
         }
+        if (scaleNoValue === 2) {
+          fullWeightControl.setValidators(defaultValidators.concat([Validators.maxLength(4)]));
+          console.log('changed_2');
+
+        }
+        fullWeightControl.updateValueAndValidity();
       });
-    fullWeightControl.setValidators(defaultCheck2);
-    fullWeightControl.updateValueAndValidity();
+
   }
 
   testClick() {
