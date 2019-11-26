@@ -7,8 +7,6 @@
         <h4>手動開單</h4>
         <div>1. 請輸入車牌號碼</div>
         <mat-form-field>
-           <!-- <input pattern="[a-zA-Z0-9]{2,4}" name="fullWeight" matInput placeholder="車牌碼2" formControlName="carNoOne"
-            minlength="2" maxlength=4 required> -->
           <input name="carNoOne" matInput formControlName="carNoOne" maxlength=4 placeholder="車牌碼1">
           <mat-error *ngFor="let validation of weightnote_validation_messages.carNoOne">
             <mat-error class="error-message"
@@ -21,26 +19,26 @@
         </mat-form-field>
         -
         <mat-form-field>
-            <input name="carNoTwo" matInput formControlName="carNoTwo" maxlength=4 placeholder="車牌碼2">
-            <mat-error *ngFor="let validation of weightnote_validation_messages.carNoOne">
-              <mat-error class="error-message"
-                *ngIf="createWeightnoteForm.get('carNoTwo').hasError(validation.type) && (createWeightnoteForm.get('carNoTwo').dirty || createWeightnoteForm.get('carNoTwo').touched)">
-                {{validation.message}}
-              </mat-error>
+          <input name="carNoTwo" matInput formControlName="carNoTwo" maxlength=4 placeholder="車牌碼2">
+          <mat-error *ngFor="let validation of weightnote_validation_messages.carNoOne">
+            <mat-error class="error-message"
+              *ngIf="createWeightnoteForm.get('carNoTwo').hasError(validation.type) && (createWeightnoteForm.get('carNoTwo').dirty || createWeightnoteForm.get('carNoTwo').touched)">
+              {{validation.message}}
             </mat-error>
+          </mat-error>
         </mat-form-field>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <div>2. 請選擇磅秤</div>
         <mat-radio-group formControlName="scaleNo">
           <mat-radio-button [value]="1" color="primary">01_大磅</mat-radio-button>
           <mat-radio-button [value]="2">02_小磅</mat-radio-button>
         </mat-radio-group>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <div>3. 請輸入重車重量</div>
         <mat-form-field>
-          <input name="fullWeight" matInput formControlName="fullWeight" placeholder="重車重"  maxlength=5>
+          <input name="fullWeight" matInput formControlName="fullWeight" placeholder="重車重" maxlength=5>
           <mat-error *ngFor="let validation of weightnote_validation_messages.fullWeight">
             <mat-error class="error-message"
               *ngIf="createWeightnoteForm.get('fullWeight').hasError(validation.type) && (createWeightnoteForm.get('fullWeight').dirty || createWeightnoteForm.get('fullWeight').touched)">
@@ -48,17 +46,17 @@
             </mat-error>
           </mat-error>
         </mat-form-field>
-        <br/>
-        <br/>
+        <br />
+        <br />
       </form>
     </mat-tab>
     <mat-tab label="車牌辨識">
-      <h4>辨識開單</h4>
+      <h4>辨識開單</h4>淤
     </mat-tab>
   </mat-tab-group>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button (click)="testClick()" mat-raised-button color="primary" class="submit-button"
+  <button (click)="createWeightNote()" mat-raised-button color="primary" class="submit-button"
     [disabled]="!createWeightnoteForm.valid">建立</button>
   <button mat-button mat-dialog-close color="warn">取消</button>
 </mat-dialog-actions>

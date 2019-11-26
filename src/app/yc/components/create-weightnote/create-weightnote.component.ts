@@ -19,9 +19,6 @@ export class CreateWeightnoteComponent implements OnInit {
   createWeightnoteForm: FormGroup;
   testErrorMsg: string;
   showBollean: boolean;
-  // defaultCheck = [Validators.required, Validators.maxLength(5), Validators.pattern('[0-9]{0,5}')];
-  // otherCheck = [Validators.required, Validators.maxLength(4), Validators.pattern('[0-9]{0,5}')];
-
 
   // tslint:disable-next-line: variable-name
   weightnote_validation_messages = {
@@ -65,70 +62,11 @@ export class CreateWeightnoteComponent implements OnInit {
       scaleNo: new FormControl(1)
     }); */
   }
-
-
   ngOnInit() {
     console.log('createWeightNote_ngOninit');
     this.dialogTitleName = '磅單開立';
     this.iniForm();
     this.setfullWeightValidators();
-  }
-
-  wowErrorMessage() {
-    this.showBollean = false;
-    if (this.createWeightnoteForm.get('carNo2').hasError('minlength')) {
-      this.showBollean = true;
-      this.testErrorMsg = '長度不足2';
-    }
-  }
-
-  testRegValidate($event: KeyboardEvent) {
-    // const testReFormat = /[a-zA-Z0-9]{1,4}/g;
-    // console.log($event);
-    // var haha = this.weightMetalForm.value.carNo;
-
-    // console.log('haha=' + haha);
-    // const testReFormat = /[a-zA-Z0-9]/;
-
-    /* var code;
-    if ($event.key !== undefined) {
-      code = $event.key;
-    } else if ($event.keyIdentifier !== undefined) {
-      code = $event.keyIdentifier;
-    } else if ($event.keyCode !== undefined) {
-      code = $event.keyCode;
-    } */
-
-    /* if (String.fromCharCode($event.keyCode).search(testReFormat) === -1) {
-      this.errorMsg = '只允許輸入英文或數字';
-    } else {
-      this.errorMsg = '';
-    } */
-  }
-
-  testKeyup($event: KeyboardEvent) {
-    // const testReFormat = /[a-zA-Z0-9]{1,4}/g;
-    // console.log($event);
-    /* var haha2: string = this.weightMetalForm.value.carNo;
-
-    console.log('haha2=' + haha2);
-    const testReFormat = /[a-zA-Z0-9]{1,4}/; */
-
-    /* var code;
-    if ($event.key !== undefined) {
-      code = $event.key;
-    } else if ($event.keyIdentifier !== undefined) {
-      code = $event.keyIdentifier;
-    } else if ($event.keyCode !== undefined) {
-      code = $event.keyCode;
-    } */
-    // return True/False
-    /*  console.log(haha2.split(/[a-zA-Z0-9]/));
-     if (/[a-zA-Z0-9]/.test(haha2)) {
-       this.errorMsg = '';
-     } else {
-       this.errorMsg = '只允許輸入英文或數字2';
-     } */
   }
 
   iniForm() {
@@ -141,7 +79,7 @@ export class CreateWeightnoteComponent implements OnInit {
   }
 
   setfullWeightValidators() {
-    const defaultValidators = [Validators.required, Validators.pattern('[0-9]{0,5}')];
+    const defaultValidators = [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$')];
     // default
     const fullWeightControl = this.createWeightnoteForm.get('fullWeight');
     fullWeightControl.setValidators(defaultValidators.concat([Validators.maxLength(5)]));
@@ -164,8 +102,7 @@ export class CreateWeightnoteComponent implements OnInit {
 
   }
 
-  testClick() {
-
+  createWeightNote() {
     if (this.createWeightnoteForm.dirty && this.createWeightnoteForm.valid) {
       this.weightnoteService.addWeightnote(this.createWeightnoteForm.value).subscribe(
         post => {
