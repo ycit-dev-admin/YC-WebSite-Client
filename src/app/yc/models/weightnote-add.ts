@@ -1,4 +1,6 @@
 export class WeightnoteAdd {
+  carNoOne: string;
+  carNoTwo: string;
   carNo: string;
   fullWeight: number;
   scaleNo: string;

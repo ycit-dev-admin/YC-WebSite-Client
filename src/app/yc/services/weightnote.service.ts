@@ -26,9 +26,9 @@ export class WeightNoteService extends BaseService {
   }
 
   addWeightnote(
-    weightnote: WeightnoteAdd,
-    weightNoteType = "1",
-    inputType = "1",
+    weightNote: WeightnoteAdd,
+    weightNoteType = '1',
+    inputType = '1',
     facNo = '2') {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -36,10 +36,11 @@ export class WeightNoteService extends BaseService {
         'Accept': 'application/vnd.yuan-chun.hateoas+json'
       })
     };
-    weightnote.weightNoteType = weightNoteType; //進貨    //可能可以加在Create-Wieghnote的ts檔
-    weightnote.inputType = inputType; //手動建立   //可能可以加在Create-Wieghnote的ts檔
-    weightnote.facNo = facNo; //手動建立   //可能可以加在Create-Wieghnote的ts檔
+    weightNote.carNo = `${weightNote.carNoOne.toUpperCase()}-${weightNote.carNoTwo.toUpperCase()}`;
+    weightNote.weightNoteType = weightNoteType; //進貨    //可能可以加在Create-Wieghnote的ts檔
+    weightNote.inputType = inputType; //手動建立   //可能可以加在Create-Wieghnote的ts檔
+    weightNote.facNo = facNo; //手動建立   //可能可以加在Create-Wieghnote的ts檔
 
-    return this.http.post<WeightNote>(`${this.apiUrlBase}/weightnotes`, weightnote, httpOptions);
+    return this.http.post<WeightNote>(`${this.apiUrlBase}/weightnotes`, weightNote, httpOptions);
   }
 }
