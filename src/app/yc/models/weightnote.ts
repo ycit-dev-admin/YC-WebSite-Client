@@ -4,7 +4,7 @@ export class WeightNote extends Entity {
     carNo: string;
     fullWeight: number;
     fullWeightTime: Date;
-    weightNoteType: string;
+    // weightNoteType: string; 已移除
     scaleNo: string;
     inputType: string;
     facNo: string;
