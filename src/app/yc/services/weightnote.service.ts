@@ -27,7 +27,6 @@ export class WeightNoteService extends BaseService {
 
   addWeightnote(
     weightNote: WeightnoteAdd,
-    weightNoteType = '1',
     inputType = '1',
     facNo = '2') {
     const httpOptions = {
@@ -37,7 +36,6 @@ export class WeightNoteService extends BaseService {
       })
     };
     weightNote.carNo = `${weightNote.carNoOne.toUpperCase()}-${weightNote.carNoTwo.toUpperCase()}`;
-    weightNote.weightNoteType = weightNoteType; //進貨    //可能可以加在Create-Wieghnote的ts檔
     weightNote.inputType = inputType; //手動建立   //可能可以加在Create-Wieghnote的ts檔
     weightNote.facNo = facNo; //手動建立   //可能可以加在Create-Wieghnote的ts檔
 
