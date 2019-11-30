@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-weightnoteinfo-dialog',
@@ -8,7 +8,9 @@ import { MatDialog } from '@angular/material';
 })
 export class WeightNoteinfoDialogComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(@Inject(MAT_DIALOG_DATA) private data: any, public dialog: MatDialog) {
+    console.log(`QQ id : ${data.weightNoteId}`);
+  }
 
   ngOnInit() {
   }
