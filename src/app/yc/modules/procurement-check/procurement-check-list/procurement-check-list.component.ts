@@ -32,7 +32,7 @@ export class ProcurementCheckListComponent implements OnInit {
 
   ngOnInit() {
     console.log('ProcurementCheckListComponent_ngOninit');
-   // this.load();
+    // this.load();
   }
 
 
@@ -46,7 +46,7 @@ export class ProcurementCheckListComponent implements OnInit {
   }
 
 
-// 要改成呼叫父元件(事件繫結+Ouput) ProcurementCheckSite的sortData
+  // 要改成呼叫父元件(事件繫結+Ouput) ProcurementCheckSite的sortData
   sortData(sort: Sort) {
     this.weightNoteParameter.orderBy = null;
     if (sort.direction) {
@@ -58,7 +58,8 @@ export class ProcurementCheckListComponent implements OnInit {
     this.load();
   }
 
-  showWeightNoteDialog() {
+  showWeightNoteDialog(weightNoteId: number) {
+    console.log(`weightNoteId : ${weightNoteId}`);
     this.dialog.open(WeightNoteinfoDialogComponent);
   }
 

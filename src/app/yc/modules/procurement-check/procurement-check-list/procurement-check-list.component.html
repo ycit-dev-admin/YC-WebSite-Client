@@ -39,8 +39,9 @@
     <ng-container matColumnDef="operateAction">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-xs-column"> 功能操作 </th>
       <td mat-cell *matCellDef="let p" class="hidden-xs-column">
+        <input name="weightNoteId" [value]="p.id" hidden #tWeightNoteId>
         <!-- <button type="submit" mat-raised-button color="primary" class="submit-button">過站</button> -->
-        <button mat-flat-button color="primary" (click)="showWeightNoteDialog()">編輯</button>
+        <button mat-flat-button color="primary" (click)="showWeightNoteDialog(tWeightNoteId.value)">編輯</button>
         <button mat-flat-button color="warn" (click)="showWeightNoteDialog()">過站</button>
         <!-- <app-weightnoteinfo-dialog></app-weightnoteinfo-dialog> -->
       </td>
