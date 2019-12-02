@@ -1,4 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { GestureConfig } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -41,7 +42,8 @@ const routes: Routes = [
     OpenIdConnectService,
     RequireAuthenticatedUserRouteGuard,   // 註冊guard的服務
     GlobalErrorHandler,
-    ErrorLoggerService
+    ErrorLoggerService,
+    { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }
   ],
   // bootstrap : [] 裡面的元件會自動被啟動，放在 bootstrap: [] 中的元件，會自動被視為放入 entryComponents: [] 之中。
   bootstrap: [AppComponent]

@@ -58,11 +58,11 @@ export class ProcurementCheckListComponent implements OnInit {
     this.load();
   }
 
-  showWeightNoteDialog(weightNoteId: number) {
-    console.log(`weightNoteId123 : ${weightNoteId}`);
+  showWeightNoteDialog(weightNote: WeightNote) {
+    console.log(`weightNoteId123 : ${JSON.stringify(weightNote)}`);
     this.dialog.open(WeightNoteinfoDialogComponent, {
       data: {
-        weightNoteId: weightNoteId
+        weightNote: weightNote
       }
     });
 
