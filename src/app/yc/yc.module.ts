@@ -29,6 +29,7 @@ import { ProcurementProcessComponent } from './components/procurement-process/pr
 import { ProcurementCheckModule } from './modules/procurement-check/procurement-check.module';
 import { ProcurementWeightModule } from './modules/procurement-weight/procurement-weight.module';
 import { ProcurementPayModule } from './modules/procurement-pay/procurement-pay.module';
+import { ProductItemService } from './services/product-item.service';
 
 @NgModule({
   imports: [
@@ -77,7 +78,8 @@ import { ProcurementPayModule } from './modules/procurement-pay/procurement-pay.
       provide: HTTP_INTERCEPTORS,
       useClass: HandleHttpErrorInterceptor,
       multi: true,
-    }
+    },
+    ProductItemService
   ],
   entryComponents: [WeightNoteinfoDialogComponent]
 })

@@ -5,8 +5,11 @@
   *ngIf='openIdConnectService.userAvailable'>
   <mat-icon aria-label="Add Weightnote" svgIcon="baseline-add"></mat-icon>
 </button> -->
-<mat-slider vertical ></mat-slider>
+
+
+<mat-slider  min="0" max="100" step="10" thumbLabel></mat-slider>
 
 <button mat-fab color="warn" class="add-fab" (click)="createWeightNoteByDialog()">
   <mat-icon aria-label="Add Weightnote" svgIcon="baseline-add"></mat-icon>
 </button>
+<mat-icon>home</mat-icon>
