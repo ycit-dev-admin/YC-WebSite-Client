@@ -1,9 +1,15 @@
-.testInline{
-  display: inline;
+$color-red: red;
+$color-blue: blue;
 
+.text-alert {
+  color: $color-red;
 }
 
-.alertTest{
-  color: red;
+.text-primary {
+  color: $color-blue;
+}
 
+.mat-list-inline-block {
+  display: inline-block;
+  vertical-align: top;
 }

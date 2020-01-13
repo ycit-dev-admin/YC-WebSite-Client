@@ -54,18 +54,18 @@
       <mat-list-item style="display: inline;" role="listitem" *ngFor="let item of showItemList">12{{item.productName}}
         <input matInput type="number" [id]="item.id"></mat-list-item>
     </mat-list> -->
-    <div> 已選{{showItemList.length}}項 , 比例加總 : <span [class.alertTest]="totalNum > 1">{{totalNum | percent}}</span></div>
-    <mat-list style="display: inline-block; vertical-align: top;">
+    <div> 已選{{showItemList.length}}項 , 比例加總 : <span [class.text-alert]="totalNum > 1">{{totalNum | percent}}</span></div>
+    <mat-list class="mat-list-inline-block">
       <ng-container *ngFor="let item of showItemList; let even = even">
         <mat-list-item *ngIf="even">
           <mat-icon (click)="RemoveItemOfShowList(item)">cancel</mat-icon>
           {{item.productName}}
           <span [innerHTML]="item.percentage | percent"></span>
           <button mat-icon-button (click)="calPercent(item,-0.1)">
-            <mat-icon style="color: red;">remove_circle</mat-icon>
+            <mat-icon class="text-alert" >remove_circle</mat-icon>
           </button>
           <button mat-icon-button (click)="calPercent(item,0.1)">
-            <mat-icon style="color: blue;">add_circle</mat-icon>
+            <mat-icon class="text-primary">add_circle</mat-icon>
           </button>
         </mat-list-item>
       </ng-container>
