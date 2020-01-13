@@ -18,7 +18,7 @@ const routes: Routes = [
       { path: 'post-table', component: PostTableComponent },
       { path: 'pos-produce-process', component: PosProduceProcessComponent },
       { path: 'pos-purchase', component: PosPurchaseComponent },
-      { path: 'procurement-process', component: ProcurementProcessComponent },
+      { path: 'procurement-process', component: ProcurementProcessComponent, canActivate: [RequireAuthenticatedUserRouteGuard] },
       {
         path: 'write-post', component: WritePostComponent,
         canActivate: [RequireAuthenticatedUserRouteGuard]
@@ -27,7 +27,7 @@ const routes: Routes = [
         path: 'create-weightnote', component: CreateWeightnoteComponent,
         canActivate: [RequireAuthenticatedUserRouteGuard]
       },
-      { path: '**', redirectTo: 'post-list' }
+      { path: '**', redirectTo: 'procurement-process' }
     ]
   }
 ];

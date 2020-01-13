@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
-
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 import { RequireAuthenticatedUserRouteGuard } from './shared/oidc/require-authenticated-user-route.guard';
@@ -14,6 +12,7 @@ import { RedirectSilentRenewComponent } from './shared/oidc/redirect-silent-rene
 import { OpenIdConnectService } from './shared/oidc/open-id-connect.service';
 import { GlobalErrorHandler } from './shared/global-error-handler';
 import { ErrorLoggerService } from './shared/error-logger.service';
+import { MaterialModule } from './shared/material/material.module';
 
 const routes: Routes = [
   { path: 'yc', loadChildren: './yc/yc.module#YcModule' },
@@ -35,7 +34,8 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
   ],
   // providers: [] 主要是用來決定哪些服務(service)允許被注入
   providers: [

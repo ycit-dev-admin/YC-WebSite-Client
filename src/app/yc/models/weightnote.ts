@@ -21,7 +21,8 @@ export class WeightNote extends Entity {
     totalPrice: number;
     actualPrice: number;
     payType: string;
-    customerNo: string;
+    customerId: string;
+    NoteStatus: string;
     remark: string;
     creatorEmpNo: string;
     createTime: Date;
