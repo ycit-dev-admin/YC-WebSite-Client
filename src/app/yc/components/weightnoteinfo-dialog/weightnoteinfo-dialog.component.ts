@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnChanges, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductItem } from '../../models/productItem';
@@ -12,19 +12,21 @@ import { ResultWithLinks } from 'src/app/shared/models/result-with-links';
   templateUrl: './weightnoteinfo-dialog.component.html',
   styleUrls: ['./weightnoteinfo-dialog.component.scss']
 })
-export class WeightNoteinfoDialogComponent implements OnInit {
+export class WeightNoteinfoDialogComponent implements OnInit, AfterViewChecked, AfterViewInit {
+
   // test Use
   testgg: string;
   selectorSource: ProductItem[] = [];
-  editWeightNoteForm: FormGroup;
 
   // Now Use
+  editWeightNoteForm: FormGroup;
   title: string;
   productSource: ProductItem[];
   showItemList: ProductItem[] = [];
   pageMeta: PageMeta;
   totalNum = 0;
   sugSubWeight = 0;
+  isSubmit = true;
 
   productItemParameter = new ProductItemParameters({ orderBy: 'id desc', pageSize: 20, pageIndex: 0 });
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private productItemService: ProductItemService) {
@@ -41,13 +43,26 @@ export class WeightNoteinfoDialogComponent implements OnInit {
     this.iniForm();
   }
 
+  ngAfterViewInit() {
+    this.isSubmit = this.showItemList.length === 0 || this.totalNum === 0;
+    console.log(`isSubmit2: ${this.isSubmit} `);
+  }
+
+  ngAfterViewChecked() {
+    this.isSubmit = this.showItemList.length === 0 || this.totalNum === 0;
+    console.log(`isSubmit: ${this.isSubmit} `);
+  }
+
   iniForm() {
+    /* ^([1-9]|[1-5]\d|60)$ */
     this.editWeightNoteForm = new FormBuilder().group({
-      carNoOne: [null, [Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z0-9]{0,4}')]],
-      carNoTwo: [null, [Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z0-9]{0,4}')]],
-      scaleNo: [1, [Validators.required]],
-      fullWeight: [null]
+      totalNumber: [this.showItemList.length, [Validators.pattern('^[1-9][0-9]*$')]],
+      totalPercent: [this.totalNum, [Validators.pattern('^([1-9]|[1-5]\d|1)$')]]
     });
+
+    // this.createWeightnoteForm.get('scaleNo').valueChanges
+    // , Validators.pattern('[a-zA-Z0-9]{0,4}')
+    // this.isSubmit = !this.editWeightNoteForm.valid;
   }
 
 
@@ -74,6 +89,10 @@ export class WeightNoteinfoDialogComponent implements OnInit {
   addItemToShowList(productItem: ProductItem) {
     console.log(productItem);
     const findIndex = this.showItemList.indexOf(productItem);
+    console.log(`editWeightNoteForm: ${this.editWeightNoteForm.valid} `);
+    console.log(`editWeightNoteForm totalNumber: ${this.editWeightNoteForm.value.totalNumber} `);
+    console.log(`editWeightNoteForm totalPercent: ${this.editWeightNoteForm.value.totalPercent} `);
+
 
     if (findIndex === -1) {
       productItem.percentage = 0.5;
@@ -82,11 +101,20 @@ export class WeightNoteinfoDialogComponent implements OnInit {
       console.log(this.showItemList);
     }
     this.calTotalPercent();
+
+  }
+
+  IsSubmitFunc() {
+    this.isSubmit = this.showItemList.length === 0 || this.totalNum === 0;
+    console.log(`isSubmit: ${this.isSubmit} `);
   }
 
   RemoveItemOfShowList(productItem: ProductItem) {
     console.log(productItem);
     const findIndex = this.showItemList.indexOf(productItem);
+    console.log(`editWeightNoteForm: ${this.editWeightNoteForm.valid} `);
+    console.log(`editWeightNoteForm totalNumber: ${this.editWeightNoteForm.value.totalNumber} `);
+    console.log(`editWeightNoteForm totalPercent: ${this.editWeightNoteForm.value.totalPercent} `);
 
     if (findIndex > -1) {
       this.showItemList.splice(findIndex, 1);
@@ -117,11 +145,13 @@ export class WeightNoteinfoDialogComponent implements OnInit {
       tempNum = tempNum + item.percentage;
     });
     this.totalNum = tempNum;
+    this.IsSubmitFunc();
   }
 
 
   CalSugSubWeight(subWeight: number) {
-    this.sugSubWeight = subWeight === 0 ? 0 : this.sugSubWeight + subWeight;
+    const calKg = this.sugSubWeight + subWeight;
+    this.sugSubWeight = calKg > 0 || subWeight === 0 ? 0 : calKg;
   }
 
 
