@@ -12,21 +12,22 @@ import { ResultWithLinks } from 'src/app/shared/models/result-with-links';
   templateUrl: './weightnoteinfo-dialog.component.html',
   styleUrls: ['./weightnoteinfo-dialog.component.scss']
 })
-export class WeightNoteinfoDialogComponent implements OnInit, AfterViewChecked, AfterViewInit {
+export class WeightNoteinfoDialogComponent implements OnInit {
 
   // test Use
   testgg: string;
   selectorSource: ProductItem[] = [];
 
   // Now Use
-  editWeightNoteForm: FormGroup;
+  // editWeightNoteForm: FormGroup;
   title: string;
   productSource: ProductItem[];
   showItemList: ProductItem[] = [];
   pageMeta: PageMeta;
   totalNum = 0;
   sugSubWeight = 0;
-  isSubmit = true;
+  /* isSubmit = true; */
+  isSubmit = this.showItemList.length === 0 || this.totalNum === 0;
 
   productItemParameter = new ProductItemParameters({ orderBy: 'id desc', pageSize: 20, pageIndex: 0 });
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private productItemService: ProductItemService) {
@@ -40,25 +41,25 @@ export class WeightNoteinfoDialogComponent implements OnInit, AfterViewChecked, 
 
 
     this.testgg = '123';
-    this.iniForm();
+    // this.iniForm();
   }
 
-  ngAfterViewInit() {
-    this.isSubmit = this.showItemList.length === 0 || this.totalNum === 0;
-    console.log(`isSubmit2: ${this.isSubmit} `);
-  }
+  /*  ngAfterViewInit() {
+     this.isSubmit = this.showItemList.length === 0 || this.totalNum === 0;
+     console.log(`isSubmit2: ${this.isSubmit} `);
+   }
 
-  ngAfterViewChecked() {
-    this.isSubmit = this.showItemList.length === 0 || this.totalNum === 0;
-    console.log(`isSubmit: ${this.isSubmit} `);
-  }
+   ngAfterViewChecked() {
+     this.isSubmit = this.showItemList.length === 0 || this.totalNum === 0;
+     console.log(`isSubmit: ${this.isSubmit} `);
+   } */
 
   iniForm() {
     /* ^([1-9]|[1-5]\d|60)$ */
-    this.editWeightNoteForm = new FormBuilder().group({
+   /*  this.editWeightNoteForm = new FormBuilder().group({
       totalNumber: [this.showItemList.length, [Validators.pattern('^[1-9][0-9]*$')]],
       totalPercent: [this.totalNum, [Validators.pattern('^([1-9]|[1-5]\d|1)$')]]
-    });
+    }); */
 
     // this.createWeightnoteForm.get('scaleNo').valueChanges
     // , Validators.pattern('[a-zA-Z0-9]{0,4}')
@@ -89,9 +90,9 @@ export class WeightNoteinfoDialogComponent implements OnInit, AfterViewChecked, 
   addItemToShowList(productItem: ProductItem) {
     console.log(productItem);
     const findIndex = this.showItemList.indexOf(productItem);
-    console.log(`editWeightNoteForm: ${this.editWeightNoteForm.valid} `);
+    /* console.log(`editWeightNoteForm: ${this.editWeightNoteForm.valid} `);
     console.log(`editWeightNoteForm totalNumber: ${this.editWeightNoteForm.value.totalNumber} `);
-    console.log(`editWeightNoteForm totalPercent: ${this.editWeightNoteForm.value.totalPercent} `);
+    console.log(`editWeightNoteForm totalPercent: ${this.editWeightNoteForm.value.totalPercent} `); */
 
 
     if (findIndex === -1) {
@@ -112,9 +113,9 @@ export class WeightNoteinfoDialogComponent implements OnInit, AfterViewChecked, 
   RemoveItemOfShowList(productItem: ProductItem) {
     console.log(productItem);
     const findIndex = this.showItemList.indexOf(productItem);
-    console.log(`editWeightNoteForm: ${this.editWeightNoteForm.valid} `);
+    /* console.log(`editWeightNoteForm: ${this.editWeightNoteForm.valid} `);
     console.log(`editWeightNoteForm totalNumber: ${this.editWeightNoteForm.value.totalNumber} `);
-    console.log(`editWeightNoteForm totalPercent: ${this.editWeightNoteForm.value.totalPercent} `);
+    console.log(`editWeightNoteForm totalPercent: ${this.editWeightNoteForm.value.totalPercent} `); */
 
     if (findIndex > -1) {
       this.showItemList.splice(findIndex, 1);

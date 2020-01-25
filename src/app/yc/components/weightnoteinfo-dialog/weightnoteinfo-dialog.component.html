@@ -3,7 +3,7 @@
 </h2>
 
 <mat-dialog-content class="post-form">
-   <form [formGroup]="editWeightNoteForm">
+  <!--  <form [formGroup]="editWeightNoteForm"> -->
 
 
   <!--  <div *ngFor="let item of productSource">     -->
@@ -205,11 +205,11 @@
 
 
 
-  </form>
+<!--   </form> -->
 
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
-  <button mat-button color="primary" [disabled]="isSubmit">存檔</button>
+  <button [(ngModel)]="isSubmit" ngDefaultControl mat-button color="primary" [disabled]="isSubmit">存檔</button>
   <button mat-button mat-dialog-close color="warn">取消</button>
 </mat-dialog-actions>
