@@ -19,7 +19,7 @@ export class WeightNoteinfoDialogComponent implements OnInit {
   selectorSource: ProductItem[] = [];
 
   // Now Use
-  // editWeightNoteForm: FormGroup;
+  editWeightNoteForm: FormGroup;
   title: string;
   productSource: ProductItem[];
   showItemList: ProductItem[] = [];
@@ -41,7 +41,7 @@ export class WeightNoteinfoDialogComponent implements OnInit {
 
 
     this.testgg = '123';
-    // this.iniForm();
+    this.iniForm();
   }
 
   /*  ngAfterViewInit() {
@@ -56,14 +56,33 @@ export class WeightNoteinfoDialogComponent implements OnInit {
 
   iniForm() {
     /* ^([1-9]|[1-5]\d|60)$ */
-   /*  this.editWeightNoteForm = new FormBuilder().group({
-      totalNumber: [this.showItemList.length, [Validators.pattern('^[1-9][0-9]*$')]],
-      totalPercent: [this.totalNum, [Validators.pattern('^([1-9]|[1-5]\d|1)$')]]
-    }); */
+    this.editWeightNoteForm = new FormBuilder().group({
+      ttButon: [null, [Validators.required]]
+      // totalPercent: [this.totalNum, [Validators.pattern('^([1-9]|[1-5]\d|1)$')]]
+    });
 
+
+
+
+    /*  this.editWeightNoteForm.get('totalNumber').valueChanges
+       .subscribe(scaleNoValue => {
+         console.log('vaild' + this.editWeightNoteForm.valid);
+         console.log('dirty' + this.editWeightNoteForm.dirty);
+       }); */
     // this.createWeightnoteForm.get('scaleNo').valueChanges
     // , Validators.pattern('[a-zA-Z0-9]{0,4}')
     // this.isSubmit = !this.editWeightNoteForm.valid;
+  }
+
+
+
+  // 數值變動才會進入
+  changedqq() {
+    this.editWeightNoteForm.get('totalNumber').valueChanges
+      .subscribe(scaleNoValue => {
+        console.log('vaild' + this.editWeightNoteForm.valid);
+        console.log('dirty' + this.editWeightNoteForm.dirty);
+      });
   }
 
 
@@ -140,11 +159,12 @@ export class WeightNoteinfoDialogComponent implements OnInit {
 
   calTotalPercent() {
     let tempNum = 0;
-    this.showItemList.forEach(function (item, index, array) {
-      console.log(`total item ${item.percentage} total index ${index}`);
-      console.log(array);
-      tempNum = tempNum + item.percentage;
-    });
+    this.showItemList.forEach(
+      function (item, index, array) {
+        console.log(`total item ${item.percentage} total index ${index}`);
+        console.log(array);
+        tempNum = tempNum + item.percentage;
+      });
     this.totalNum = tempNum;
     this.IsSubmitFunc();
   }

@@ -3,34 +3,43 @@
 </h2>
 
 <mat-dialog-content class="post-form">
-  <!--  <form [formGroup]="editWeightNoteForm"> -->
+  <form [formGroup]="editWeightNoteForm">
+    <!-- <input type="text" name="totalNumber" formControlName="totalNumber" [value]="showItemList.length"> -->
+    <!-- <input type="hidden" name="totalPercent" formControlName="totalPercent" [value]="totalNum"> -->
 
-
-  <!--  <div *ngFor="let item of productSource">     -->
-  <!-- <ul>
+    <!--  <div *ngFor="let item of productSource">     -->
+    <!-- <ul>
       　<li class="testInline" *ngFor="let item of productSource">
         <button mat-stroked-button (click)="addItemToShowList(item)">
           {{item.productName}}
         </button>
       </li>
     </ul> -->
-  <div> 進貨品項 : </div>
-  <span *ngFor="let item of productSource">
-    <button mat-stroked-button (click)="addItemToShowList(item)">
-      {{item.productName}}
-    </button>
-  </span>
+    <div> 進貨品項 : </div>
+    <span *ngFor="let item of productSource">
+      <button ngDefaultControl type="button" name="ttButon" formControlName="ttButon" mat-stroked-button (click)="addItemToShowList(item)">
+        {{item.productName}}
+      </button>
+    </span>
+    <span *ngFor="let item of productSource">
+      <mat-checkbox  (click)="addItemToShowList(item)">
+        <!-- <button mat-stroked-button>
+          {{item.productName}}
+        </button> -->
+        {{item.productName}}
+      </mat-checkbox>
+    </span>
 
 
 
-  <!--  <button mat-stroked-button (click)="addItemToShowList(item)" >
+    <!--  <button mat-stroked-button (click)="addItemToShowList(item)" >
               {{item.productName}}
             </button> -->
 
 
-  <!-- <button mat-button [attr.testV]="testgg" (click)="addItem(item.id)">{{item.ProductName}}</button> -->
-  <!-- <button mat-button (click)="selectorSource2.push(['333'])">鋼筋</button> -->
-  <!--  <button mat-button (click)="addItem($event)">鋼筋</button>
+    <!-- <button mat-button [attr.testV]="testgg" (click)="addItem(item.id)">{{item.ProductName}}</button> -->
+    <!-- <button mat-button (click)="selectorSource2.push(['333'])">鋼筋</button> -->
+    <!--  <button mat-button (click)="addItem($event)">鋼筋</button>
           <button mat-button>廢銑鐵</button>
           <button mat-button>關刀鐵</button>
           <button mat-button>特工</button>
@@ -47,47 +56,49 @@
           <button mat-button>馬達</button>
           <button mat-button>電池</button>
           <button mat-button>廢銑代工</button> -->
-  <!--  </div> -->
+    <!--  </div> -->
 
 
-  <!-- <mat-list role="list">
+    <!-- <mat-list role="list">
       <mat-list-item style="display: inline;" role="listitem" *ngFor="let item of showItemList">12{{item.productName}}
         <input matInput type="number" [id]="item.id"></mat-list-item>
     </mat-list> -->
-  <div> 已選{{showItemList.length}}項 , 比例加總 : <span [class.color-alert]="totalNum > 1">{{totalNum | percent}}</span>
-  </div>
-  <mat-list class="mat-list-inline-block">
-    <ng-container *ngFor="let item of showItemList; let even = even">
-      <mat-list-item *ngIf="even">
-        <mat-icon (click)="RemoveItemOfShowList(item)">cancel</mat-icon>
-        {{item.productName}}
-        <span [innerHTML]="item.percentage | percent"></span>
-        <button mat-icon-button (click)="calPercent(item,-0.1)">
-          <mat-icon class="color-alert">remove_circle</mat-icon>
-        </button>
-        <button mat-icon-button (click)="calPercent(item,0.1)">
-          <mat-icon class="color-primary">add_circle</mat-icon>
-        </button>
-      </mat-list-item>
-    </ng-container>
-  </mat-list>
-  <mat-list class="mat-list-inline-block">
-    <ng-container *ngFor="let item of showItemList; let odd = odd">
-      <mat-list-item *ngIf="odd">
-        <mat-icon (click)="RemoveItemOfShowList(item)">cancel</mat-icon>
-        {{item.productName}}
-        <span [innerHTML]="item.percentage | percent"></span>
-        <button mat-icon-button (click)="calPercent(item,-0.1)">
-          <mat-icon class="color-alert">remove_circle</mat-icon>
-        </button>
-        <button mat-icon-button (click)="calPercent(item,0.1)">
-          <mat-icon class="color-primary">add_circle</mat-icon>
-        </button>
-      </mat-list-item>
-    </ng-container>
-  </mat-list>
+    <div> 已選{{showItemList.length}}項 , 比例加總 : <span [class.color-alert]="totalNum > 1">{{totalNum | percent}}</span>
+    </div>
+    <mat-list class="mat-list-inline-block">
+      <ng-container *ngFor="let item of showItemList; let even = even">
+        <mat-list-item *ngIf="even">
+          <mat-icon (click)="RemoveItemOfShowList(item)">cancel</mat-icon>
+          {{item.productName}}
+          <span [innerHTML]="item.percentage | percent"></span>
+          <button mat-icon-button (click)="calPercent(item,-0.1)">
+            <mat-icon class="color-alert">remove_circle</mat-icon>
+          </button>
+          <button mat-icon-button (click)="calPercent(item,0.1)">
+            <mat-icon class="color-primary">add_circle</mat-icon>
+          </button>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
 
-  <!-- <ul style="display: inline-block; vertical-align: top;">
+
+    <mat-list class="mat-list-inline-block">
+      <ng-container *ngFor="let item of showItemList; let odd = odd">
+        <mat-list-item *ngIf="odd">
+          <mat-icon (click)="RemoveItemOfShowList(item)">cancel</mat-icon>
+          {{item.productName}}
+          <span [innerHTML]="item.percentage | percent"></span>
+          <button mat-icon-button (click)="calPercent(item,-0.1)">
+            <mat-icon class="color-alert">remove_circle</mat-icon>
+          </button>
+          <button mat-icon-button (click)="calPercent(item,0.1)">
+            <mat-icon class="color-primary">add_circle</mat-icon>
+          </button>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+
+    <!-- <ul style="display: inline-block; vertical-align: top;">
       <ng-container *ngFor="let item of showItemList; let even = even">
         　<li *ngIf="even">
           <span>
@@ -111,7 +122,7 @@
 
 
 
-  <!-- <mat-list style="display: inline-block;">
+    <!-- <mat-list style="display: inline-block;">
       <ng-container *ngFor="let item of showItemList; let odd = odd">
         <mat-list-item *ngIf="odd" >
           <mat-icon (click)="RemoveItemOfShowList(item)">cancel</mat-icon>
@@ -129,7 +140,7 @@
 
 
 
-  <!-- <ul>
+    <!-- <ul>
       　<li *ngFor="let item of showItemList">
         <span>
           {{item.productName}}
@@ -142,48 +153,48 @@
 
 
 
-  <!-- <div style="display: inline;" *ngFor="let item of showItemList">
+    <!-- <div style="display: inline;" *ngFor="let item of showItemList">
           {{item.productName}}
           <input matInput type="number" placeholder="Font size (px)" [id]="item.id" min="10">
         </div> -->
 
-  <div> 建議扣重 : {{sugSubWeight}} Kg</div>
-  <div>
-    <button mat-stroked-button (click)="CalSugSubWeight(-10)">
-      -10
-    </button>
-    <button mat-stroked-button (click)="CalSugSubWeight(-50)">
-      -50
-    </button>
-    <button mat-stroked-button (click)="CalSugSubWeight(-100)">
-      -100
-    </button>
-    <button mat-stroked-button (click)="CalSugSubWeight(-200)">
-      -200
-    </button>
-  </div>
-  <div>
-    <button mat-stroked-button (click)="CalSugSubWeight(10)">
-      +10
-    </button>
-    <button mat-stroked-button (click)="CalSugSubWeight(50)">
-      +50
-    </button>
-    <button mat-stroked-button (click)="CalSugSubWeight(100)">
-      +100
-    </button>
-    <button mat-stroked-button (click)="CalSugSubWeight(200)">
-      +200
-    </button>
-  </div>
-  <div>
-    <button mat-stroked-button (click)="CalSugSubWeight(0)">
-      不扣重
-    </button>
-  </div>
+    <div> 建議扣重 : {{sugSubWeight}} Kg</div>
+    <div>
+      <button mat-stroked-button (click)="CalSugSubWeight(-10)">
+        -10
+      </button>
+      <button mat-stroked-button (click)="CalSugSubWeight(-50)">
+        -50
+      </button>
+      <button mat-stroked-button (click)="CalSugSubWeight(-100)">
+        -100
+      </button>
+      <button mat-stroked-button (click)="CalSugSubWeight(-200)">
+        -200
+      </button>
+    </div>
+    <div>
+      <button mat-stroked-button (click)="CalSugSubWeight(10)">
+        +10
+      </button>
+      <button mat-stroked-button (click)="CalSugSubWeight(50)">
+        +50
+      </button>
+      <button mat-stroked-button (click)="CalSugSubWeight(100)">
+        +100
+      </button>
+      <button mat-stroked-button (click)="CalSugSubWeight(200)">
+        +200
+      </button>
+    </div>
+    <div>
+      <button mat-stroked-button (click)="CalSugSubWeight(0)">
+        不扣重
+      </button>
+    </div>
 
 
-  <!--   <table class="example-full-width" cellspacing="0">
+    <!--   <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
           <span [innerHTML]="'車牌:'+data.weightNote.carNo"></span>
@@ -205,11 +216,12 @@
 
 
 
-<!--   </form> -->
+  </form>
 
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
-  <button [(ngModel)]="isSubmit" ngDefaultControl mat-button color="primary" [disabled]="isSubmit">存檔</button>
+  <!-- <button [(ngModel)]="isSubmit" ngDefaultControl mat-button color="primary" [disabled]="isSubmit">存檔</button> -->
+  <button mat-button color="primary" [disabled]="!editWeightNoteForm.valid">存檔</button>
   <button mat-button mat-dialog-close color="warn">取消</button>
 </mat-dialog-actions>
